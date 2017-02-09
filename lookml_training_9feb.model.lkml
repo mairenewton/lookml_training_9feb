@@ -48,14 +48,6 @@ explore: orders {
   }
 }
 
-explore: product_facts {
-  join: products {
-    type: left_outer
-    sql_on: ${product_facts.product_id} = ${products.id} ;;
-    relationship: many_to_one
-  }
-}
-
 explore: products {}
 
 explore: users {}

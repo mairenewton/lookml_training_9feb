@@ -6,6 +6,14 @@ include: "*.view"
 # include all the dashboards
 include: "*.dashboard"
 
+explore: users {
+  join: orders {
+    type: left_outer
+    sql_on: ${users.id} = ${orders.user_id} ;;
+    relationship: one_to_many
+  }
+}
+
 explore: inventory_items {
   join: products {
     type: left_outer
@@ -49,5 +57,3 @@ explore: orders {
 }
 
 explore: products {}
-
-explore: users {}

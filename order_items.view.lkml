@@ -35,7 +35,35 @@ view: order_items {
 
   dimension: sale_price {
     type: number
+    hidden: yes
     sql: ${TABLE}.sale_price ;;
+  }
+
+  measure: total_sale_price {
+    type: sum
+    sql: ${sale_price} ;;
+    value_format_name: usd
+  }
+
+  measure: total_sale_price_new_users {
+    type: sum
+    sql: ${sale_price} ;;
+    value_format_name: usd
+    filters: {
+      field: users.is_new_user
+      value: "Yes"
+    }
+  }
+
+  measure: average_sale_price {
+    type: average
+    sql: ${sale_price} ;;
+    value_format_name: usd
+  }
+
+  measure: count_distinct_orders {
+    type: count_distinct
+    sql: ${order_id} ;;
   }
 
   measure: count {
